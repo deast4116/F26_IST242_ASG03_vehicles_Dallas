@@ -1,7 +1,11 @@
 class AutoModel:
-    """Represents an automodel class..."""
+    def __init__(self, name: str, in_production: bool, years: list[int]) -> None:
+        if not years:
+            raise ValueError("years list needs at least one year")
 
-
+        self._name = name
+        self._in_production = in_production
+        self._years = list(years)
 
     @property
     def name(self) -> str:
@@ -13,9 +17,15 @@ class AutoModel:
 
     @property
     def years(self) -> list[int]:
-        return self._years
+        return list(self._years)
 
     @property
+    def first_year(self) -> int:
+        return self._years[0]
+
     def __str__(self) -> str:
-        return self._name
+        return (
+            f"{self._name} in production = {self._in_production},  "
+            f"release year: {self.first_year}"
+        )
     
